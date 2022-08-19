@@ -10,8 +10,18 @@ MacUser=$( scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /logi
 
 userPlist="/Users/$MacUser/Library/Preferences/org.mozilla.firefox.plist"
 
+userMozilla="/Users/$MacUser/Library/Application Support/Mozilla"
+
+
 # Kill firefox process
 killall 'firefox'
+
+rm -rf $firefoxapp
+rm -rf $mozilla_system_plist
+
+rm -rf "$userPlist"
+
+rm -rf "$userMozilla"
 
 # remove OEM autoconfig.js file
 if [[ -e "/Users/$MacUser/Library/Preferences/org.mozilla.firefox.plist" ]];then
@@ -22,8 +32,5 @@ fi
 
 #rm -rf '/Users/$MacUser/Library/Preferences/org.mozilla.firefox.plist'
 
-rm -rf $firefoxapp
-rm -rf $mozilla_system_plist
 
-rm -rf $userPlist
-
+exit 0 
